@@ -1,0 +1,16 @@
+#dino {
+  position: relative;
+  top: 200px;
+  left: 200px;
+}
+#cenario {
+  position: relative;
+  top: 190px;
+}
+
+#pontuacao {
+  color:black;
+  position: relative;
+  font-family: Gungsuh;
+  top:100px;
+}
