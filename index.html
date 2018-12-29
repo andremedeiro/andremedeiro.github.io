@@ -65,7 +65,7 @@
 				this.velocidade += this.gravidade;
 				this.y += this.velocidade;
 
-				if (this.y > chao.altura-this.altura){
+				if (this.y > chao.y-this.altura){
 					this.y = chao.y-this.altura;
 					this.qnt_pulos =0;
 				};
@@ -80,7 +80,6 @@
 				if(this.qnt_pulos < maxPulos){
 					this.velocidade = -this.forcaDoPulo;
 					this.qnt_pulos++;
-					console.log(this.qnt_pulos);
 				};
 			},
 
