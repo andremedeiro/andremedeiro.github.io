@@ -14,11 +14,20 @@
 			right: 0px;
 			margin: auto;
 
+		};
+		.botao{
+			position: relative;
+			top: 10px;
+			bottom: 0px;
+			left: 0px;
+			right: 0px;
+			margin: auto;
 		}
 
 	</style>
 </head>
 <body>
+	<input type="button" command="bloco.pula()" value='Pular' class='botao'>
 	<script>
 
 		// CONTANTES 
@@ -59,7 +68,7 @@
 
 				if (this.y > chao.altura-this.altura){
 					this.y = chao.y-this.altura;
-					qnt_this.pulos =0;
+					this.qnt_pulos =0;
 				};
 			},
 
@@ -71,7 +80,8 @@
 			pula: function(){
 				if(this.qnt_pulos < maxPulos){
 					this.velocidade = -this.forcaDoPulo;
-					qnt_this.pulos++
+					this.qnt_pulos++
+					console.log('pulou');
 				};
 			},
 
