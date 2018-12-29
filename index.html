@@ -1,15 +1,130 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>repl.it</title>
-    <link href="index.css" rel="stylesheet" type="text/css" />
-  </head>
-  <body onkeydown="trataTeclado()">
-    <label id="pontuacao"></label>
-    <img src="https://i.imgur.com/NruXRJJ.gif" id="dino">
-    <img src="https://i.imgur.com/RExzqQF.png"  id="cenario">
-    <script src="index.js"></script>
-  </body>
+<head>
+	<meta charset="UTF-8">
+	<title>Joguinho</title>
+	<style>
+
+		canvas{
+			border: 1px solid black;
+			position: absolute;
+			top: 0px;
+			bottom: 0px;
+			left: 0px;
+			right: 0px;
+			margin: auto;
+
+		}
+
+	</style>
+</head>
+<body>
+	<script>
+
+		// CONTANTES 
+		const cinza = '#e6e6e6';
+		const azul = '#50beff';
+		const preto = '#000';
+		const verde = '#31AF91';
+		const vermelho = '#FF0000';
+
+		// VARIAVEIS
+		var canvas, contexto, LARGURA, ALTURA, frame = 0, maxPulos=3,
+
+		chao={
+			y:530,
+			altura:70,
+			cor: cinza,
+
+			desenha: function(){
+				contexto.fillStyle=this.cor;
+				contexto.fillRect(0, this.y, LARGURA, this.altura);
+			}
+		},
+
+		bloco={
+			x:50,
+			y:0,
+			largura:50,
+			altura:50,
+			cor: vermelho,
+			gravidade: 1.5,
+			velocidade: 0,
+			forcaDoPulo: 15,
+			qnt_pulos: 0,
+
+			atualiza: function(){
+				this.velocidade += this.gravidade;
+				this.y += this.velocidade;
+
+				if (this.y > chao.altura-this.altura){
+					this.y = chao.y-this.altura;
+					qnt_this.pulos =0;
+				};
+			},
+
+			desenha: function(){
+				contexto.fillStyle=this.cor;
+				contexto.fillRect(this.x, this.y, this.largura, this.altura);
+			},
+
+			pula: function(){
+				if(this.qnt_pulos < maxPulos){
+					this.velocidade = -this.forcaDoPulo;
+					qnt_this.pulos++
+				};
+			},
+
+		};
+
+		// FUNÇÕES
+		function clique(evento) {
+			bloco.pula();
+		};
+
+		function main(){
+			ALTURA = window.innerHeight;
+			LARGURA = window.innerWidth;
+
+			if (LARGURA >= 500){
+				LARGURA=600;
+				ALTURA=600;
+			};
+
+			canvas=document.createElement('canvas');
+			canvas.width = LARGURA
+			canvas.height = ALTURA;
+
+			contexto = canvas.getContext('2d');
+			document.body.appendChild(canvas);
+			document.addEventListener('mousedown', clique);
+
+			rodar();
+
+		};
+
+		function rodar(){
+			atualiza();
+			desenha();
+
+			window.requestAnimationFrame(rodar);
+		};
+
+		function atualiza(){
+			frame++;
+			bloco.atualiza()
+		};
+
+		function desenha() {
+			contexto.fillStyle=azul;
+			contexto.fillRect(0, 0, LARGURA, ALTURA);
+
+			chao.desenha()
+			bloco.desenha()
+		};
+
+		main()
+
+	</script>
+</body>
 </html>
