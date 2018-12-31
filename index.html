@@ -118,14 +118,14 @@
 			insere: function(){
 				this._obs.push({
 					x: LARGURA,
-					largura: 50,
+					largura: 20 + Math.floor(30*Math.random()),
 					altura_baixo: 30 + Math.floor(120*Math.random()),
-					espaco: 130+ Math.floor(50*Math.random()),
+					espaco: 140+ Math.floor(50*Math.random()),
 					cor: this.cores
 
 				});
 
-				this.tempoInsere=20+Math.floor(40*Math.random());
+				this.tempoInsere=30+Math.floor(30*Math.random());
 			},
 
 			atualiza: function(){
