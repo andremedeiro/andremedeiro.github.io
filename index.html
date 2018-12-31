@@ -16,23 +16,15 @@
 			right: 0px;
 			margin: auto;
 		}
-                .botao{
-                       width: 100px;
-                       height: 100px;
-		}
 
 	</style>
 </head>
 <body onkeydown="clique()">
-	
-        <input type="button" value="/\" onclick="botao.pula()" class="botao" />
-        <input type="button" value="Começar" onclick="comecar()" class="botao"/>
-        <input type="button" value="Gravidade" onclick="alterarGravidade()" class="botao"/>
-	
+
 	<script>
 
 		// VARIAVEIS
-		var canvas, contexto, ALTURA, LARGURA, frames = 0, velocidade=10, estadoAtual, record,img,galinha_caindo =new Sprite(917,51, 957,100), galinha_voando=new Sprite(959, 0, 999, 49), galinha_morta=new Sprite(867,104,915,153), comeca = new Sprite(531,569,932,999), game_over= new Sprite(0,818,404,999),
+		var canvas, contexto, ALTURA, LARGURA, frames = 0, velocidade=10, estadoAtual, record,img,galinha_caindo =new Sprite(917,51, 41,50), galinha_voando=new Sprite(959, 0, 41, 50), galinha_morta=new Sprite(867,104,49,50), comeca = new Sprite(531,569,932,999), game_over= new Sprite(0,818,404,999),
 
 		estados = {
 			jogar:0,
@@ -55,8 +47,8 @@
 			x:50,
 			y:0,
 			galinha: galinha_caindo,
-			altura:50,
-			largura: 46,
+			altura: 50,
+			largura: 41,
 			gravidade: 1.5,
 			queda: 0,
 			forcaDoPulo: 14,
@@ -106,7 +98,7 @@
 				this.score = 0;
 				this.morreu = false;
 				this.pulou=false;
-                                this.gravidade=1.5;
+				velocidade=10;
 
 			},
 
@@ -121,23 +113,26 @@
 
 		obstaculos={
 			_obs:[],
-			cores: '#D67F2F',
 			tempoInsere:0,
+			variacao:140,
+			numero: 20,
 
 			insere: function(){
 				this._obs.push({
 					x: LARGURA,
 					largura: 20 + Math.floor(30*Math.random()),
 					altura_baixo: 30 + Math.floor(120*Math.random()),
-					espaco: 140+ Math.floor(50*Math.random()),
-					cor: this.cores
+					espaco: this.variacao+ Math.floor(50*Math.random()),
+					cor: '#D67F2F'
 
 				});
 
-				this.tempoInsere=30+Math.floor(30*Math.random());
+				this.tempoInsere=this.numero+Math.floor(40*Math.random());
 			},
 
+
 			atualiza: function(){
+				
 				if(this.tempoInsere == 0)
 					this.insere()
 				else
@@ -238,6 +233,7 @@
 		function roda(){
 			atualiza();
 			desenha();
+			dificulta();
 
 			// LOOP
 			window.requestAnimationFrame(roda);
@@ -296,14 +292,12 @@
 			bloco.desenha();
 
 		};
-		
-                comecar = function(){
-                        estadoAtual=estados.jogando;
-                        bloco.reset()
-		};
-		
-                alterarGravidade=function(){
-                        bloco.gravidade = 0.8;
+
+		function dificulta() {
+			if (bloco.score > record){
+				obstaculos.variacao=100;
+				obstaculos.numero=10;
+			}
 		};
 
 		// RODA O JOGO
