@@ -26,6 +26,9 @@
 <body onkeydown="clique()">
 	
         <input type="button" value="/\" onclick="botao.pula()" class="botao" />
+        <input type='button' value='Começar' onclick='comecar()' />
+        <input type='button' value='Gravidade' onclick='alterarGravidade()' />
+	
 	<script>
 
 		// VARIAVEIS
@@ -103,6 +106,7 @@
 				this.score = 0;
 				this.morreu = false;
 				this.pulou=false;
+                                this.gravidade=1.5;
 
 			},
 
@@ -291,6 +295,15 @@
 			chao.desenha();
 			bloco.desenha();
 
+		};
+		
+                comecar = function(){
+                        estadoAtual=estados.jogando;
+                        bloco.reset()
+		};
+		
+                alterarGravidade=function(){
+                        bloco.gravidade = 0.8;
 		};
 
 		// RODA O JOGO
