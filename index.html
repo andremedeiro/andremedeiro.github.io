@@ -2,7 +2,9 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Joguinho</title>
+	<title>Salve a Galinha</title>
+	<link rel="icon" href="jogo.ico" type="image/x-icon" />
+
 	<style>
 		
 		canvas {
@@ -17,12 +19,12 @@
 
 	</style>
 </head>
-<body>
+<body onkeydown="clique()">
 
 	<script>
 
 		// VARIAVEIS
-		var canvas, contexto, ALTURA, LARGURA, frames = 0, velocidade=10, estadoAtual,
+		var canvas, contexto, ALTURA, LARGURA, frames = 0, velocidade=10, estadoAtual, record,img,galinha_caindo =new Sprite(917,51, 957,100), galinha_voando=new Sprite(959, 0, 999, 49), galinha_morta=new Sprite(867,104,915,153), comeca = new Sprite(531,569,932,999), game_over= new Sprite(0,818,404,999),
 
 		estados = {
 			jogar:0,
@@ -33,7 +35,7 @@
 		chao={
 			y:530,
 			altura:70,
-			cor: '#e8da78',
+			cor: '#939A33',
 
 			desenha: function(){
 				contexto.fillStyle = this.cor;
@@ -44,23 +46,24 @@
 		bloco={
 			x:50,
 			y:0,
+			galinha: galinha_caindo,
 			altura:50,
-			largura:50,
-			cor: '#ff9239',
-			gravidade: 1.4,
+			largura: 46,
+			gravidade: 1.5,
 			queda: 0,
 			forcaDoPulo: 14,
 			morreu: false,
 			score: 0,
+			pulou: false,
 
 			atualiza: function() {
 				this.queda += this.gravidade;
 				this.y += this.queda;
 
 				if (this.y > ALTURA/2 && estadoAtual == estados.jogar){
-					this.y=ALTURA/2
-					this.morreu=false
-					this.queda = 0
+					this.y=ALTURA/2;
+					this.morreu=false;
+					this.queda = 0;
 				}
 
 				else if (this.y > chao.y - this.altura && estadoAtual != estados.perdeu) {
@@ -72,44 +75,57 @@
 			},
 
 			desenha: function(){
-				if (this.morreu == false){
-					contexto.fillStyle = this.cor;
+				if (this.morreu == true){
+					this.galinha = galinha_morta;
 				}
-				else
-					contexto.fillStyle='#000000';
-				contexto.fillRect(this.x, this.y, this.largura, this.altura);
+				else if (this.pulou == true){
+					this.galinha.desenha(this.x, this.y);
+					this.pulou=false;
+				}
+				else 
+					this.galinha = galinha_caindo
+				this.galinha.desenha(this.x, this.y);
 			},
 
 			reset: function(){
 				this.queda=0;
 				this.y=0;
+				this.galinha=galinha_caindo;
+				if (this.score > record){
+					localStorage.setItem('record', this.score);
+					record=this.score;
+				};
 				this.score = 0;
-				this.morreu = false
+				this.morreu = false;
+				this.pulou=false;
+
 			},
 
 			pula: function(){
 				this.queda = -this.forcaDoPulo;
 				this.morreu = false;
-			},
+				this.galinha=galinha_voando;
+				this.pulou=true;
+			}
 
-		};
+		},
 
 		obstaculos={
 			_obs:[],
-			cores: ['#ffbc1c','#ff1c1c','#ff85e1','#52a7ff','#78ff5d'],
+			cores: '#D67F2F',
 			tempoInsere:0,
 
 			insere: function(){
 				this._obs.push({
 					x: LARGURA,
-					largura: 10 + Math.floor(40*Math.random()),
+					largura: 50,
 					altura_baixo: 30 + Math.floor(120*Math.random()),
-					espaco: 140+ Math.floor(50*Math.random()),
-					cor: this.cores[Math.floor(5*Math.random())]
+					espaco: 130+ Math.floor(50*Math.random()),
+					cor: this.cores
 
 				});
 
-				this.tempoInsere=30+Math.floor(30*Math.random());
+				this.tempoInsere=20+Math.floor(40*Math.random());
 			},
 
 			atualiza: function(){
@@ -162,19 +178,22 @@
 
 		// FUNÇÕES 
 
-		function clique(evento){
-			if (estadoAtual == estados.jogando){
-				bloco.pula();
-			}
-			else if (estadoAtual == estados.jogar){
-				estadoAtual=estados.jogando;
-				bloco.reset()
-			}
-			else if (estadoAtual == estados.perdeu && bloco.y >= 2*ALTURA){
-				estadoAtual=estados.jogar;
-				obstaculos.limpa();
-				bloco.queda=0;
-				bloco.morre=true;
+		function clique(){
+			if (event.keyCode == 38 || event.keyCode ==32){
+				if (estadoAtual == estados.jogando){
+					bloco.pula();
+				}
+				else if (estadoAtual == estados.jogar){
+					estadoAtual=estados.jogando;
+					bloco.reset()
+				}
+				else if (estadoAtual == estados.perdeu && bloco.y >= 2*ALTURA){
+					estadoAtual=estados.jogar;
+					obstaculos.limpa();
+					bloco.queda=0;
+					bloco.galinha=galinha_morta;
+					bloco.morre=true;
+				}
 			}
 		};
 
@@ -192,9 +211,17 @@
 
 			contexto = canvas.getContext('2d');
 			document.body.appendChild(canvas);
-			canvas.addEventListener('mousedown', clique);
 
-			estadoAtual=estados.jogar
+			estadoAtual=estados.jogar;
+
+			record = localStorage.getItem('record');
+			if(record == null){
+				record = 0
+			};
+
+			img=new Image();
+			img.src="sprite_jogo.png";
+
 			roda();
 
 		};
@@ -216,24 +243,41 @@
 
 		};
 
+		function Sprite(x, y, largura, altura){
+			this.x = x;
+			this.y = y;
+			this.altura = altura;
+			this.largura = largura;
+
+			this.desenha=function(xCanvas, yCanvas){
+				contexto.drawImage(img, this.x,this.y, this.largura, this.altura, xCanvas, yCanvas, this.largura, this.altura);
+
+			}
+
+		};
+
+		var bg = new Sprite(0,0,600,530), medalha =new Sprite(828,160,860,206);
+
 		function desenha(){
-			contexto.fillStyle = '#80daff';
-			contexto.fillRect(0, 0, LARGURA, ALTURA);
+
+			bg.desenha(0, 0);
+			medalha.desenha(460,30);
+			
 
 			contexto.fillStyle='#FFFFFF';
 			contexto.font='50px Verdana';
 			contexto.fillText(bloco.score, 30,68)
 
+			contexto.fillStyle='#000000';
+			contexto.font='50px verdana';
+			contexto.fillText(record, 500, 68)
+
 			if (estadoAtual == estados.jogar){
-				contexto.fillStyle='#000000';
-				contexto.font='50px Verdana';
-				contexto.fillText('RAMO JOGAR', 40,ALTURA/2)
-				}
+				comeca.desenha(LARGURA/6, ALTURA/7);
+			}
 
 			else if (estadoAtual == estados.perdeu){
-				contexto.fillStyle='#FF0000';
-				contexto.font='50px Verdana';
-				contexto.fillText('IHHH MORREU', 30,ALTURA/2)
+				game_over.desenha(LARGURA/6, ALTURA/3);
 			}
 
 			else if (estadoAtual == estados.jogando)
