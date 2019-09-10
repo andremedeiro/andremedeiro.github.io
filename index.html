@@ -127,7 +127,7 @@
 
 				});
 
-				this.tempoInsere=this.numero+Math.floor(40*Math.random());
+				this.tempoInsere=this.numero+Math.floor(60*Math.random());
 			},
 
 
@@ -291,13 +291,6 @@
 			chao.desenha();
 			bloco.desenha();
 
-		};
-
-		function dificulta() {
-			if (bloco.score > record){
-				obstaculos.variacao=100;
-				obstaculos.numero=10;
-			}
 		};
 
 		// RODA O JOGO
