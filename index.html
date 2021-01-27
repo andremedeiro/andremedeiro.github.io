@@ -1,300 +1,40 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<title>Salve a Galinha</title>
-	<link rel="icon" href="jogo.ico" type="image/x-icon" />
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Impulse - Business Solution</title>
+    <link rel="shortcut icon" href="img/isotipo.svg" >
 
-	<style>
-		
-		canvas {
-			border: 1px solid black;
-			position: absolute;
-			top: 0px;
-			bottom: 0px;
-			left: 0px;
-			right: 0px;
-			margin: auto;
-		}
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
 
-	</style>
-</head>
-<body onkeydown="clique()">
+  </head>
+  <body>
+   	
+    <nav class="nav navbar-fixed-top navbar-inverse barra-navegacao"> <!-- navbar-->
+      <div class="container">
+        <div class="navbar-header"> <!-- header -->
+            <a id="botao-menu" class="navbar-toggle collapsed glyphicon glyphicon-menu-hamburger" data-toggle="collapse" data-target="#navegacao">
+              <span class="sr-only">Alternar Navegação</span>
+            </a>
 
-	<script>
+          <a href="index.html" class="navbar-brand">
+            <span class="logo">Impulse</span>
+          </a>
+        </div>
 
-		// VARIAVEIS
-		var canvas, contexto, ALTURA, LARGURA, frames = 0, velocidade=10, estadoAtual, record,img,galinha_caindo =new Sprite(917,51, 41,50), galinha_voando=new Sprite(959, 0, 41, 50), galinha_morta=new Sprite(867,104,49,50), comeca = new Sprite(531,569,932,999), game_over= new Sprite(0,818,404,999),
+        <div class="collapse navbar-collapse" id="navegacao"> <!-- menu -->
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="index.html" class="link-navbar">Quem somos?</a></li>
+            <li><a href="index.html">Serviços</a></li>
+            <li><span id="link-destaque"><a href="index.html" id="link">Fale Conosco</a></span></li>
+          </ul>       
+        </div>
+      </div>
+    </nav>
 
-		estados = {
-			jogar:0,
-			jogando: 1,
-			perdeu: 2
-		},
-
-		chao={
-			y:530,
-			altura:70,
-			cor: '#939A33',
-
-			desenha: function(){
-				contexto.fillStyle = this.cor;
-				contexto.fillRect(0, this.y, LARGURA, this.altura);
-			},
-		},
-
-		bloco={
-			x:50,
-			y:0,
-			galinha: galinha_caindo,
-			altura: 50,
-			largura: 41,
-			gravidade: 1.3,
-			queda: 0,
-			forcaDoPulo: 14,
-			morreu: false,
-			score: 0,
-			pulou: false,
-
-			atualiza: function() {
-				this.queda += this.gravidade;
-				this.y += this.queda;
-
-				if (this.y > ALTURA/2 && estadoAtual == estados.jogar){
-					this.y=ALTURA/2;
-					this.morreu=false;
-					this.queda = 0;
-				}
-
-				else if (this.y > chao.y - this.altura && estadoAtual != estados.perdeu) {
-					this.morreu = true;
-					this.y = chao.y - this.altura;
-					this.queda = 0;
-
-				};
-			},
-
-			desenha: function(){
-				if (this.morreu == true){
-					this.galinha = galinha_morta;
-				}
-				else if (this.pulou == true){
-					this.galinha.desenha(this.x, this.y);
-					this.pulou=false;
-				}
-				else 
-					this.galinha = galinha_caindo
-				this.galinha.desenha(this.x, this.y);
-			},
-
-			reset: function(){
-				this.queda=0;
-				this.y=0;
-				this.galinha=galinha_caindo;
-				if (this.score > record){
-					localStorage.setItem('record', this.score);
-					record=this.score;
-				};
-				this.score = 0;
-				this.morreu = false;
-				this.pulou=false;
-				velocidade=10;
-
-			},
-
-			pula: function(){
-				this.queda = -this.forcaDoPulo;
-				this.morreu = false;
-				this.galinha=galinha_voando;
-				this.pulou=true;
-			}
-
-		},
-
-		obstaculos={
-			_obs:[],
-			tempoInsere:0,
-			variacao:160,
-			numero: 30,
-
-			insere: function(){
-				this._obs.push({
-					x: LARGURA,
-					largura: 10 + Math.floor(30*Math.random()),
-					altura_baixo: 30 + Math.floor(120*Math.random()),
-					espaco: this.variacao+ Math.floor(50*Math.random()),
-					cor: '#D67F2F'
-
-				});
-
-				this.tempoInsere=this.numero+Math.floor(60*Math.random());
-			},
-
-
-			atualiza: function(){
-				
-				if(this.tempoInsere == 0)
-					this.insere()
-				else
-					this.tempoInsere-- 
-				for (var i=0, tam=this._obs.length; i<tam; i++){
-					var obs=this._obs[i];
-					obs.x-=velocidade;
-
-					if(bloco.x < obs.x + obs.largura && bloco.x+bloco.largura >= obs.x && bloco.y + bloco.altura >= chao.y - obs.altura_baixo){
-						bloco.morreu = true;
-						estadoAtual=estados.perdeu;
-					}
-
-					else if (bloco.x < obs.x + obs.largura && bloco.x+bloco.largura >= obs.x && bloco.y <= chao.y-obs.altura_baixo-obs.espaco){
-						estadoAtual=estados.perdeu;
-						bloco.morreu = true;
-					}
-
-					else if (bloco.morreu == true) {
-						estadoAtual=estados.perdeu;
-					}
-
-
-					else if (obs.x <= -obs.largura){
-						this._obs.splice(i, 1);
-						tam--;
-						bloco.score++;
-						i--
-					}
-				};
-			},
-
-			limpa: function(){
-				this._obs = [];
-			},
-
-			desenha: function(){
-				for (var i=0, tam=this._obs.length; i< tam; i++){
-					var obs=this._obs[i];
-					contexto.fillStyle=obs.cor;
-					contexto.fillRect(obs.x, chao.y-obs.altura_baixo, obs.largura, obs.altura_baixo);
-					contexto.fillStyle=obs.cor;
-					contexto.fillRect(obs.x,0, obs.largura, chao.y-obs.altura_baixo-obs.espaco);
-				};
-			}
-		};
-
-		// FUNÇÕES 
-
-		function clique(){
-			if (event.keyCode == 38 || event.keyCode ==32){
-				if (estadoAtual == estados.jogando){
-					bloco.pula();
-				}
-				else if (estadoAtual == estados.jogar){
-					estadoAtual=estados.jogando;
-					bloco.reset()
-				}
-				else if (estadoAtual == estados.perdeu && bloco.y >= 2*ALTURA){
-					estadoAtual=estados.jogar;
-					obstaculos.limpa();
-					bloco.queda=0;
-					bloco.galinha=galinha_morta;
-					bloco.morre=true;
-				}
-			}
-		};
-
-		function main(){
-			LARGURA = window.innerWidth;
-			ALTURA = window.innerHeight;
-			if (LARGURA >= 500){
-				ALTURA = 600;
-				LARGURA = 600;
-			};
-
-			canvas = document.createElement('canvas');
-			canvas.width = LARGURA;
-			canvas.height = ALTURA;
-
-			contexto = canvas.getContext('2d');
-			document.body.appendChild(canvas);
-
-			estadoAtual=estados.jogar;
-
-			record = localStorage.getItem('record');
-			if(record == null){
-				record = 0
-			};
-
-			img=new Image();
-			img.src="sprite_jogo.png";
-
-			roda();
-
-		};
-
-		function roda(){
-			atualiza();
-			desenha();
-
-			// LOOP
-			window.requestAnimationFrame(roda);
-		};
-
-		function atualiza(){
-			frames++;
-			bloco.atualiza();
-			if (estadoAtual == estados.jogando){
-				obstaculos.atualiza();
-			}
-
-		};
-
-		function Sprite(x, y, largura, altura){
-			this.x = x;
-			this.y = y;
-			this.altura = altura;
-			this.largura = largura;
-
-			this.desenha=function(xCanvas, yCanvas){
-				contexto.drawImage(img, this.x,this.y, this.largura, this.altura, xCanvas, yCanvas, this.largura, this.altura);
-
-			}
-
-		};
-
-		var bg = new Sprite(0,0,600,530), medalha =new Sprite(828,160,860,206);
-
-		function desenha(){
-
-			bg.desenha(0, 0);
-			medalha.desenha(460,30);
-			
-
-			contexto.fillStyle='#FFFFFF';
-			contexto.font='50px Verdana';
-			contexto.fillText(bloco.score, 30,68)
-
-			contexto.fillStyle='#000000';
-			contexto.font='50px verdana';
-			contexto.fillText(record, 500, 68)
-
-			if (estadoAtual == estados.jogar){
-				comeca.desenha(LARGURA/6, ALTURA/7);
-			}
-
-			else if (estadoAtual == estados.perdeu){
-				game_over.desenha(LARGURA/6, ALTURA/3);
-			}
-
-			else if (estadoAtual == estados.jogando)
-				obstaculos.desenha();
-
-			chao.desenha();
-			bloco.desenha();
-
-		};
-
-		// RODA O JOGO
-		main()
-	</script>
-
-</body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+  </body>
 </html>

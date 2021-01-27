@@ -1,0 +1,80 @@
+body {
+	background: url('img/bg.png');
+	background-size: 100%;
+	color: rgb(16,24,32);
+	font-family: Sansation Regular;
+}
+
+#botao-menu {
+	background: rgb(16,24,32);
+	color: rgb(229,225,230);
+	border: none;
+	transition: all 0.3s;
+	text-decoration: none; 
+}
+
+#botao-menu:hover {
+	background: rgb(229,225,230);
+	color: rgb(16,24,32);
+	transition: all 0.3s;
+}
+
+.barra-navegacao {
+	background: rgb(16,24,32);
+	padding-top: 5px;
+}
+
+.logo {
+	height: 40px;
+	width: 200px;
+	display: block;
+	background: url('img/branco/logo_sem_tag.svg') no-repeat;
+	background-size: 130px; 
+	color: transparent;
+}
+
+.navbar-brand {
+	padding-top: 10px;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+	color: rgb(229,225,230);
+	border-bottom: 2px solid rgb(16,24,32);
+	transition: border 0.3s;
+	margin-right: 10px; 
+}
+
+.navbar-inverse .navbar-nav>li>a:hover {
+	border-bottom: 2px solid rgb(229,225,230);
+	transition: border 0.3s;
+}
+
+#link {
+	color: rgb(229,225,230);
+	padding: 15px 20px;
+	position: relative;
+	top: 4px;
+}
+
+#link:hover {
+	color: rgb(16,24,32);
+	text-decoration: none;
+	transition: all 0.3s;
+}
+
+#link-destaque {
+	position: relative;
+	top: 10px;
+	height: 30px;
+	display: block;
+	color: rgb(229,225,230);
+	transition: all 0.3s;
+	border-radius: 5px;
+	border: 1px solid rgb(229,225,230);
+}
+
+#link-destaque:hover {
+	background-color: rgb(229,225,230);
+	color: rgb(16,24,32);
+	transition: all 0.3s;
+}
