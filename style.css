@@ -14,6 +14,30 @@ html, body {
 	font-family: Sansation Regular;
 }
 
+.bold {
+	font-family: Sansation Bold;
+}
+
+.regular {
+	font-family: Sansation Regular;
+}
+
+.light {
+	font-family: Sansation Light;
+}
+
+.branco {
+	color: rgb(229,225,230);
+}
+
+.preto {
+	color: rgb(16,24,32);
+}
+
+.vermelho {
+	color: rgb(228,0,43);
+}
+
 
 /* ------------------------------ HEADER ------------------------------*/
 
@@ -50,14 +74,14 @@ html, body {
 	padding-top: 10px;
 }
 
-.navbar-inverse .navbar-nav>li>a {
+.link {
 	color: rgb(229,225,230);
-	border-bottom: 2px solid rgb(16,24,32);
+	border-bottom: 2px solid transparent;
 	transition: border 0.3s;
 	margin-right: 10px; 
 }
 
-.navbar-inverse .navbar-nav>li>a:hover {
+.link:hover {
 	border-bottom: 2px solid rgb(229,225,230);
 	transition: border 0.3s;
 }
@@ -67,7 +91,7 @@ html, body {
 	margin-left: 10px;
 	margin-bottom: 5px;
 	height: 30px;
-	background: rgb(16,24,32);
+	background: transparent;
 	color: rgb(229,225,230);
 	transition: all 0.3s;
 	border-radius: 5px;
@@ -85,28 +109,46 @@ html, body {
 
 /* ------------------------------ PRIMEIRA CAPA ------------------------------*/
 
-.capa {
-	background: rgb(229,225,230);
-	font-family: Sansation Light;
+#pagina1 {
+	height: 900px;
+	background: url("img/bg.png") no-repeat;
+	background-size: contain;
 }
 
-.titulo {
-
+#pagina2 {
+	padding: 200px 0px;
+	position: relative;
+	font-size: 100px;
+	background: url(img/isotipo.png) no-repeat;
+	background-size: 600px 600px;
 }
 
-.bold {
-	font-family: "Sansation Bold";
-	font-weight: 2000;
+p {
+	padding: 0px;
+	margin: 0px; 
 }
+
 
 /* ------------------------------ RODAPÉ ------------------------------*/
 
 #rodape {
-	background-color: rgb(16,24,32);
+	background: rgb(16,24,32) /*url("img/pattern.svg")*/;
+	background-size: 390px 390px; 
+	padding-top: 40px;
+	background-origin: padding-box;
 	font-family: Sansation Light;
 	height: 400px;
-	box-shadow: inset 0px 0px 10px rgba(16,24,32,0.3);
+	color: rgb(229,225,230);
+}
 
+#logo-footer {
+	background: url("img/branco/logo_tag.svg") no-repeat;
+	position: relative;
+	margin-top: 50px; 
+}
+
+.coluna-footer {
+	padding-top: 50px;
 }
 
 /* ------------------------------ FONTS ------------------------------*/
