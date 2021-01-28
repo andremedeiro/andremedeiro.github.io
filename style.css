@@ -1,9 +1,22 @@
-body {
-	background: url('img/bg.png');
-	background-size: 100%;
+/*
+*	@author André Medeiros
+* @version 0.1
+*/
+
+/* ------------------------------ LAYOUT ------------------------------*/
+
+
+html, body {
+	height: 100%;
+	width: 100%;
+	background: rgb(229,225,230);
 	color: rgb(16,24,32);
 	font-family: Sansation Regular;
 }
+
+
+/* ------------------------------ HEADER ------------------------------*/
+
 
 #botao-menu {
 	background: rgb(16,24,32);
@@ -77,4 +90,42 @@ body {
 	background-color: rgb(229,225,230);
 	color: rgb(16,24,32);
 	transition: all 0.3s;
+}
+
+
+/* ------------------------------ PRIMEIRA CAPA ------------------------------*/
+
+.capa {
+	background: rgb(229,225,230);
+	font-family: Sansation Light;
+}
+
+.titulo {
+
+}
+
+.bold {
+	font-family: "Sansation Regular";
+	font-weight: 2000;
+}
+
+
+/* ------------------------------ FONTS ------------------------------*/
+
+@font-face {
+font-family: "Sansation Regular";
+src: url("fonts/sansation_regular-webfont.woff") format("woff"),
+url("fonts/sansation_regular-demo.html") format("html");
+}
+
+@font-face {
+font-family: "Sansation Bold";
+src: url("fonts/sansation_bold-webfont.woff") format("woff"),
+url("fonts/sansation_bold-demo.html") format("html");
+}
+
+@font-face {
+font-family: "Sansation Light";
+src: url("fonts/sansation_light-webfont.woff") format("woff"),
+url("fonts/sansation_light-demo.html") format("html");
 }
