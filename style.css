@@ -6,7 +6,7 @@
 /* ------------------------------ LAYOUT ------------------------------*/
 
 
-html, body {
+html, body, #capa-1{
 	height: 100%;
 	width: 100%;
 	background: rgb(229,225,230);
@@ -38,117 +38,195 @@ html, body {
 	color: rgb(228,0,43);
 }
 
+*:focus {
+	outline: none !important;
+}
 
 /* ------------------------------ HEADER ------------------------------*/
 
-
-#botao-menu {
-	background: rgb(16,24,32);
-	color: rgb(229,225,230);
-	border: none;
-	transition: all 0.3s;
-	text-decoration: none; 
-}
-
-#botao-menu:hover {
-	background: rgb(229,225,230);
-	color: rgb(16,24,32);
-	transition: all 0.3s;
-}
-
 .barra-navegacao {
+	background: rgb(229,225,230);
+	position: fixed;
+	height: 70px;
+}
+
+#barra-de-scroll {
+	background: rgb(229,225,230);
+	position: fixed;
+	height: 2px;
+	width: 100%;
+}
+
+#scroll {
 	background: rgb(16,24,32);
-	padding-top: 5px;
+	position: fixed;
+	height: 2px;
+	width: 0%;
 }
 
 .logo {
-	height: 40px;
-	width: 200px;
-	display: block;
-	background: url('img/branco/logo_sem_tag.svg') no-repeat;
-	background-size: 130px; 
-	color: transparent;
-}
-
-.navbar-brand {
-	padding-top: 10px;
-}
-
-.link {
-	color: rgb(229,225,230);
-	border-bottom: 2px solid transparent;
-	transition: border 0.3s;
-	margin-right: 10px; 
-}
-
-.link:hover {
-	border-bottom: 2px solid rgb(229,225,230);
-	transition: border 0.3s;
-}
-
-#fale-conosco {
-	margin-top: 9px;
-	margin-left: 10px;
-	margin-bottom: 5px;
 	height: 30px;
-	background: transparent;
-	color: rgb(229,225,230);
-	transition: all 0.3s;
-	border-radius: 5px;
-	border: 1px solid rgb(229,225,230);
-	padding-top: 4px;
-	padding-right: 20px;
-	padding-left: 20px;
+	width: 105px;
+	display: block;
+	background: url('img/preto/logo_sem_tag.svg') no-repeat;
+	background-size: contain; 
+	color: transparent;
+	margin-top: 8px;
 }
 
-#fale-conosco:hover {
-	background-color: rgb(229,225,230);
+.navbar-inverse .navbar-nav>li>a{
 	color: rgb(16,24,32);
-	transition: all 0.3s;
 }
 
-/* ------------------------------ PRIMEIRA CAPA ------------------------------*/
-
-#pagina1 {
-	height: 900px;
-	background: url("img/bg.png") no-repeat;
-	background-size: contain;
+.navbar-inverse .navbar-nav>li>a:hover {
+	color: rgb(16,24,32);
 }
 
-#pagina2 {
-	padding: 200px 0px;
-	position: relative;
-	font-size: 100px;
-	background: url(img/isotipo.png) no-repeat;
-	background-size: 600px 600px;
+#lista-menu {
+	margin-top: 10px;
+	font-size: 15px;
 }
 
-p {
-	padding: 0px;
-	margin: 0px; 
+#link-blog {
+	margin-right: 15px; 
 }
 
+#fale-conosco, #botao-capa-1 {
+	margin-top: 8px;
+	background: rgb(229,225,230);
+	color: rgb(228,0,43);
+	border: 1px solid rgb(228,0,43);
+	border-radius: 0px;
+	padding: 5px 30px; 
+	transition: all 0.2s;
+}
+
+#fale-conosco:hover, #botao-capa-1:hover {
+	background: rgb(228,0,43);
+	font-family: Sansation Regular;
+	color: rgb(229,225,230);
+	transition: all 0.2s;
+}
+
+#botao-menu {
+	margin-top: 17px;
+	margin-bottom: 20px;
+	background: rgb(229,225,230);
+	color: rgb(16,24,32);
+	border: none;
+	border-radius: 0px;
+	text-decoration-line: none;
+	transition: all 0.2s;
+}
+
+#botao-menu:hover {
+	background: rgb(228,0,43);
+	color: rgb(229,225,230);
+}
+
+#navegacao {
+	background: rgb(229,225,230);
+}
+
+
+/* ------------------------------ CONTEUDO 1  ------------------------------*/
+
+#texto-capa-1 {
+	margin-top: 35%; 
+}
+
+#imagem-capa-1 {
+	margin-top: 7%; 
+	padding: 40px;
+}
+
+#titulo-capa-1 {
+	font-size: 60px;
+}
+
+#subtitulo-capa-1 {
+	font-size: 40px;
+	margin: 0px;
+}
+
+#botao-capa-1 {
+	font-size: 17px;
+	margin-top: 20px;
+	padding: 5px 40px; 
+	border: 1px solid rgb(228,0,43);
+	color: rgb(228,0,43);
+	transition: all 0.2s;
+}
+
+#botao-capa-1:hover {
+	background: rgb(228,0,43);
+	transition: all 0.2s;
+}
+
+/* ------------------------------ BOTAO CHAT ------------------------------*/
+
+#botao-chat {
+	height: 50px;
+	width: 50px;
+	bottom: 3%;
+	right: 5%;
+	position: fixed;
+	cursor: pointer;
+}
 
 /* ------------------------------ RODAPÉ ------------------------------*/
 
 #rodape {
-	background: rgb(16,24,32) /*url("img/pattern.svg")*/;
-	background-size: 390px 390px; 
-	padding-top: 40px;
-	background-origin: padding-box;
-	font-family: Sansation Light;
-	height: 400px;
+	background: rgb(16,24,32);
+	padding-bottom: 20px;
+	font-family: Sansation Regular;
 	color: rgb(229,225,230);
 }
 
 #logo-footer {
 	background: url("img/branco/logo_tag.svg") no-repeat;
+	width: 140px;
+	height: 40px;
 	position: relative;
-	margin-top: 50px; 
+	margin-top: 50px;
+	background-size: 140px auto;
 }
 
 .coluna-footer {
 	padding-top: 50px;
+}
+
+footer .nav>li>a {
+	color: rgb(229,225,230);
+}
+
+footer .nav>li>a:hover {
+	background: none;
+}
+
+.rede-social {
+	height: 40px;
+	width: 40px;
+	padding: 2px;
+	margin-right: 15px;
+	transition: padding 0.1s;
+	float: left;
+}
+
+.rede-social:hover {
+	padding: 0px;
+	transition: padding 0.1s;
+}
+
+#infos {
+	font-size: 9px;
+	padding-left: 10px; 
+}
+
+#direitos-reservados {
+	position: relative;
+	margin-top: 30px;
+	text-align: center;
 }
 
 /* ------------------------------ FONTS ------------------------------*/
@@ -170,22 +248,3 @@ font-family: "Sansation Light";
 src: url("fonts/sansation_light-webfont.woff") format("woff"),
 url("fonts/sansation_light-demo.html") format("html");
 }
-
-/* ------------------------------ SCROLL BAR ------------------------------*/
-
-/*
-::-webkit-scrollbar {
-    width: 12px;
-    background-color: rgba(0,0,0,0);
-}
-  
-::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 10px;
-    background: rgb(228,0,43); 
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
-}
-
-::-webkit-scrollbar-thumb:hover{
-    background: rgb(200,0,30); 
-}
-*/

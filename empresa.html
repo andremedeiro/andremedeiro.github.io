@@ -8,76 +8,72 @@
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="img/isotipo.svg" >
     <link href="style.css" rel="stylesheet">
-    <link href="stylechat.css" rel="stylesheet">
- 
+    <link href="empresa-style.css" rel="stylesheet">
   </head>
   <body>
 
     <!-- HEADER -->
     <nav class="nav navbar-fixed-top navbar-inverse barra-navegacao"> <!-- navbar-->
-
-      <div id="barra-de-scroll">
-        <div id="scroll"></div>
-      </div>
-
       <div class="container">
-        
         <div class="navbar-header"> <!-- header -->
-          <a id="botao-menu" class="navbar-toggle collapsed glyphicon glyphicon-menu-hamburger" data-toggle="collapse" data-target="#navegacao">
+            <a id="botao-menu" class="navbar-toggle collapsed glyphicon glyphicon-menu-hamburger" data-toggle="collapse" data-target="#navegacao">
               <span class="sr-only">Alternar Navegação</span>
-          </a>
+            </a>
 
           <a href="index.html" class="navbar-brand"> <!-- logo -->
             <span class="logo">Impulse</span>
           </a>
         </div>
-
         <div class="collapse navbar-collapse" id="navegacao"> <!-- menu -->
           <ul class="nav navbar-nav navbar-right" id="lista-menu">
-            <li><a href="index.html" class="preto regular"><b>Home</b></a></li>
-            <li><a href="index.html" class="preto regular">Empresa</a></li>
-            <li><a href="index.html" class="preto regular">Serviços</a></li>
-            <li><a href="index.html" class="preto regular" id="link-blog">Blog</a></li>
-            <li><a href="index.html"  id="fale-conosco">Fale Conosco</a></li>
+            <li><a href="empresa.html" id="empresa" class="branco regular">Empresa</a></li>
+            <li><a href="index.html" class="branco regular">Serviços</a></li>
+            <li><a href="index.html" class="branco regular">Blog</a></li>
+            <li><button type="button" class="btn regular" onclick="location.href='#'" id="fale-conosco">Fale Conosco</button></li>
           </ul>       
         </div>
       </div>
+      <div id="load-scroll"></div>
     </nav>
 
-    <!-- CONTEUDO 1 -->
-    <section id="capa-1">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <div id="texto-capa-1">
-              <h1 class="bold" id="titulo-capa-1">Esse é um <br>Grande Texto</h1>
-              <h3 class="light" id="subtitulo-capa-1">e eu sou um texto pequeno</h3>
-              <button id="botao-capa-1">Eu sou um botão</button>
-            </div>
+
+
+
+    <!-- CONTEÚDO -->
+
+    <section id="quem-somos">
+    	<div class="container">
+    		<div class="row">
+          <div class="col-sm-6" style="border: 1px solid red;">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </div>
-          <div class="col-md-6 hidden-xs hidden-sm" id="imagem-capa-1">
-            <img src="img/illustrations/foguete.svg" class="img-responsive"> 
+          <div class="col-sm-6" id="coluna-pagina" style="border: 1px solid red;">
+            <img src="img/imagens/foguete.svg" id="foguete">
+            <img src="img/imagens/space.svg">
           </div>
         </div>
-      </div>
+    	</div>
     </section>
 
-    <!-- BOTAO CHAT -->
-    <div class="container">
-      <a type="submit" onclick="chat.open()" id="botao-chat"><img src="img/redes_sociais/chat.svg"></a>
-    </div>
+
+
 
     <!-- RODAPÉ -->
 
     <footer id="rodape">
-      <div class="container">
+      <div class="container" style="position: relative;">
         <div class="row">
 
           <div class="col-md-3">
             <span class="logo" id="logo-footer">Impulse</span>
             <br>
             <br>
-            <br>
+            <button type="button" class="btn botao-footer" onclick="location.href='#'" id="fale-conosco">Fale Conosco</button>
             <br>
             <br>
             <br>
@@ -125,13 +121,6 @@
       </div>
     </footer>
 
-    <script src="https://static.zenvia.com/embed/js/zenvia-chat.min.js"></script>
-    <script>
-      var chat = new ZenviaChat('8af8687f5426a6f23ae1ee6ba6019f8b')
-      .embedded('buttonless')
-      .height('500px')
-      .build()
-    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="script.js"></script>
