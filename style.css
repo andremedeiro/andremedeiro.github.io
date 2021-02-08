@@ -7,8 +7,8 @@
 
 
 html, body, #capa-1{
-	height: 100%;
 	width: 100%;
+	height: 100%;
 	background: rgb(229,225,230);
 	color: rgb(16,24,32);
 	font-family: Sansation Regular;
@@ -46,7 +46,6 @@ html, body, #capa-1{
 
 .barra-navegacao {
 	background: rgb(229,225,230);
-	position: fixed;
 	height: 70px;
 }
 
@@ -93,7 +92,7 @@ html, body, #capa-1{
 
 #fale-conosco, #botao-capa-1 {
 	margin-top: 8px;
-	background: rgb(229,225,230);
+	background: transparent;
 	color: rgb(228,0,43);
 	border: 1px solid rgb(228,0,43);
 	border-radius: 0px;
@@ -103,7 +102,6 @@ html, body, #capa-1{
 
 #fale-conosco:hover, #botao-capa-1:hover {
 	background: rgb(228,0,43);
-	font-family: Sansation Regular;
 	color: rgb(229,225,230);
 	transition: all 0.2s;
 }
@@ -124,12 +122,32 @@ html, body, #capa-1{
 	color: rgb(229,225,230);
 }
 
-#navegacao {
-	background: rgb(229,225,230);
+div#navegacao.navbar-collapse.collapse.in, div#navegacao.navbar-collapse.collapsing {
+	background: rgb(228,0,43);
+	border: none;
+	box-shadow: inset 0 0 10px rgba(16,24,32,0.1);
 }
 
+div#navegacao.navbar-collapse.collapse.in>ul>li>a, div#navegacao.navbar-collapse.collapsing>ul>li>a{
+	color: rgb(229,225,230);
+}
+
+div#navegacao.navbar-collapse.collapse.in>ul>li>#fale-conosco, div#navegacao.navbar-collapse.collapsing>ul>li>#fale-conosco{
+	padding-left: 15px;
+	transition: all 0.2s;
+}
+
+div#navegacao.navbar-collapse.collapse.in>ul>li>#fale-conosco:hover, div#navegacao.navbar-collapse.collapsing>ul>li>#fale-conosco:hover {
+	background: rgb(229,225,230);
+	color: rgb(228,0,43);
+	transition: all 0.2s;
+}
 
 /* ------------------------------ CONTEUDO 1  ------------------------------*/
+
+#capa-1 {
+	position: relative;
+}
 
 #texto-capa-1 {
 	margin-top: 35%; 
