@@ -1,0 +1,19 @@
+CREATE TABLE postagem (
+    id_post NOT NULL PRIMARY KEY,
+    titulo varchar(30) NOT NULL,
+    descricao varchar(150) NOT NULL,
+    link_image TEXT NOT NULL,
+    date_post datetime NOT NULL,
+)
+
+CREATE TABLE cliente (
+    nome TEXT NOT NULL,
+    data_nasc varchar(10) NOT NULL,
+    email TEXT NOT NULL PRIMARY KEY,
+    encript_senha TEXT NOT NULL,
+    cpf varchar(11) NOT NULL,
+    endereco TEXT NOT NULL,
+)
+
+
+

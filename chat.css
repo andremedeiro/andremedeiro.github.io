@@ -1,0 +1,41 @@
+body {
+    background: rgb(229,225,230) !important;
+}
+
+.chat-header {
+	display: none !important;
+}
+
+.message-received .message-content {
+    color: rgb(228,0,43) !important;
+    background: rgb(229,225,230) !important;
+    border: 2px solid rgb(228,0,43) !important;
+}
+
+.message-sent .message-content {
+    color: rgb(229,225,230) !important;
+    background: rgb(228,0,43) !important;
+    border: 2px solid rgb(228,0,43) !important;
+}
+
+.chat-footer form .submit.disabled {
+    background: rgb(16, 24, 32, 0.2) !important;
+    transition: all 0.2s;
+}
+
+.chat-footer form .submit {
+    background: rgb(228,0,43) !important;
+    transition: all 0.2s;
+}
+
+.st0[data-v-908a19ba] {
+    fill: rgb(16, 24, 32, 0.5) !important;
+}
+
+.chat-footer form .clip.enabled {
+    fill: rgb(228,0,43) !important;
+}
+
+.chat-footer form .ic_attach_file {
+    margin-right: 20px !important;
+}
