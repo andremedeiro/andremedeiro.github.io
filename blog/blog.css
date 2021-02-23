@@ -1,0 +1,76 @@
+.blog {
+    background-color: rgb(229,225,230);
+    padding-bottom: 70px;
+    display: block;
+    overflow-x: hidden;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+h1 {
+    color: rgb(16,24,32);
+    text-align: center;
+    font-size: 50px;
+    font-family: "Sansation Bold";
+    padding-top: 100px;
+    padding-bottom: 70px;
+}
+
+.secao-blog {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+
+.post {
+    width: 300px;
+    height: 380px;
+    margin: 20px;
+    background-color: rgb(229,225,230);
+    color: rgba(16,24,32,0.7);
+    border-radius: 10px;
+    border: 1px solid rgba(16,24,32, 0.1);
+    transition: all 0.5s;
+}
+
+.post:hover {
+    box-shadow: 0px 0px 20px rgba(16,24,32, 0.2);
+    color: rgba(16,24,32,1);
+    transition: all 0.5s;
+}
+
+.area-titulo {
+    padding: 10px;
+    height: 50px;
+    text-align: center;
+}
+
+.titulo {
+    font-family: "Sansation Bold";
+    font-size: 17px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.area-imagem {
+    height: 200px;
+    background: url("C:/Users/andre/Desktop/Design/ANDRÉ/1.png");
+    background-size: 100%;
+    background-position: center;
+}
+
+.area-descricao {
+    height: 130px;
+    padding: 20px;
+}
+
+.descricao {
+    font-family: "Sansation Regular";
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
