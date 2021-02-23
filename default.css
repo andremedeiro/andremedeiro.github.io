@@ -80,3 +80,78 @@
 		margin-right: auto;
 	}
 }
+
+/* ------------------------------ FORM ------------------------------*/
+
+#conteudo-form {
+	height: 100%;
+	width: 100%;
+	background: rgb(16,24,32);
+}
+
+#area-do-form {
+    background: rgb(16,24,32);
+    position: relative;
+    margin: auto;
+    margin-top: 100px;
+    box-shadow: 0 0 30px rgba(0,0,2,0.3);
+    width: 400px;
+    height: 400px;
+    border-radius: 20px;
+    text-align: center;
+    z-index: 1;
+}
+
+#form-area {
+    height:270px;
+    width:100%;
+    padding: 50px;
+	padding-top: 0px;
+}
+
+.form-control {
+    background:rgb(16,24,32);
+    border: 1px solid rgb(228,0,43);
+    margin-bottom: 20px;
+}
+
+.form-control:focus {
+    border-color:  rgb(228,0,43);
+    color: rgb(229,225,230);
+    box-shadow: 0 0 15px rgba(0,0,2,0.3);
+}
+
+.btn-primary {
+    width: 300px;
+    background:  transparent;
+    color: rgb(229,225,230);
+    border: 1px solid rgb(228,0,43);
+    transition: all 0.2s;
+}
+
+.btn-primary:hover {
+    all: none;
+    border: 1px solid rgb(228,0,43);
+    background:  rgb(228,0,43);
+    box-shadow: 0 0 15px rgba(0,0,2,0.3);
+    transition: all 0.2s;
+}
+
+.btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover  {
+    background:  rgb(228,0,43);
+    color: rgb(229,225,230);
+    border: 1px solid rgb(228,0,43);
+}
+
+#extras {
+    height: 80px; 
+    width: 100%;
+}
+
+#titulo-form {
+    color: rgb(229,225,230);
+    text-align: center;
+    font-size: 20px;
+    font-family: "Sansation Bold";
+    padding: 50px
+}
